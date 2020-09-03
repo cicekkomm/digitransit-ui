@@ -212,6 +212,14 @@ const withRelay = Relay.createContainer(ItineraryTab, {
         }
         legs {
           mode
+          alerts {
+            alertUrl
+            alertId
+            alertDescriptionTextTranslations {
+              language
+              text
+            }
+          }
           ${LegAgencyInfo.getFragment('leg')}
           from {
             lat

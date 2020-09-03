@@ -50,6 +50,7 @@
   "canceled-legs": "Ausgefallene Abfahrten auf der Route",
   "car": "Auto",
   "car-distance-duration": "Auto {distance} ({duration})",
+  "car-park-full": "Volle Parkplätze ausschließen",
   "car_park": "Park & Ride",
   "cause": "Grund",
   "char-left": "Zeichen",

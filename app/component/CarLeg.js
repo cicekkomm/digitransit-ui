@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import moment from 'moment';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, intlShape } from 'react-intl';
 
+import { routerShape } from 'react-router';
 import RouteNumber from './RouteNumber';
 import Icon from './Icon';
 import ComponentUsageExample from './ComponentUsageExample';
@@ -10,6 +11,11 @@ import { displayDistance } from '../util/geo-utils';
 import { durationToString } from '../util/timeUtils';
 import ItineraryCircleLine from './ItineraryCircleLine';
 import { isKeyboardSelectionEvent } from '../util/browser';
+
+import ServiceAlertIcon from './ServiceAlertIcon';
+import { AlertSeverityLevelType } from '../constants';
+import { replaceQueryParams } from '../util/queryUtils';
+import { getServiceAlertDescription } from '../util/alertUtils';
 
 function CarLeg(props, context) {
   const distance = displayDistance(
@@ -19,6 +25,9 @@ function CarLeg(props, context) {
   const duration = durationToString(props.leg.duration * 1000);
   const firstLegClassName = props.index === 0 ? 'start' : '';
   const modeClassName = 'car';
+  
+  const alerts = props.leg.alerts || [];
+  const carParkAlert = alerts.filter(a => a.alertId === 'car_park_full')[0];
 
   /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
   return (
@@ -39,7 +48,11 @@ function CarLeg(props, context) {
         <div className="itinerary-time-column-time">
           {moment(props.leg.startTime).format('HH:mm')}
         </div>
-        <RouteNumber mode={props.leg.mode.toLowerCase()} vertical />
+        <RouteNumber
+          mode={props.leg.mode.toLowerCase()}
+          vertical
+          hasDisruption={!!carParkAlert}
+        />
       </div>
       <ItineraryCircleLine index={props.index} modeClassName={modeClassName} />
       <div
@@ -68,6 +81,31 @@ function CarLeg(props, context) {
             values={{ distance, duration }}
             defaultMessage="Drive {distance} ({duration})}"
           />
+          <br />
+          {carParkAlert && (
+              <div className="itinerary-leg-first-row itinerary-alert-info parkinglot">
+                <ServiceAlertIcon
+                  className="inline-icon"
+                  severityLevel={AlertSeverityLevelType.Info}
+                />
+                {getServiceAlertDescription(
+                  carParkAlert,
+                  context.intl.locale,
+                )}
+              </div>
+            )}
+            {carParkAlert && (
+              <button
+                className="standalone-btn cursor-pointer parkinglot-alternative-btn"
+                onClick={() => {
+                  replaceQueryParams(context.router, {
+                    useCarParkAvailabilityInformation: true,
+                  });
+                }}
+              >
+                <FormattedMessage id="car-park-full" />
+              </button>
+            )}
         </div>
       </div>
     </div>
@@ -119,6 +157,10 @@ CarLeg.propTypes = {
   children: PropTypes.node,
 };
 
-CarLeg.contextTypes = { config: PropTypes.object.isRequired };
+CarLeg.contextTypes = {
+  config: PropTypes.object.isRequired,
+  router: routerShape,
+  intl: intlShape.isRequired,
+};
 
 export default CarLeg;
