@@ -336,6 +336,18 @@ export default {
           en: 'https://zeusscooters.com',
         },
       },
+      bird: {
+        icon: 'scooter',
+        name: {
+          de: 'Bird',
+          en: 'Bird',
+        },
+        type: 'scooter',
+        url: {
+          de: 'https://www.bird.co/de/',
+          en: 'https://www.bird.co',
+        },
+      },
     }
     
   },
