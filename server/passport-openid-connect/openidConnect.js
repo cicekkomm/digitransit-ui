@@ -52,6 +52,7 @@ export default function setUpOIDC(app, port) {
         secure: process.env.NODE_ENV === 'production',
         httpOnly: process.env.NODE_ENV === 'production',
         maxAge: 1000 * 60 * 60 * 24 * 365 * 10,
+        sameSite: 'none',
       },
     }),
   );
@@ -86,15 +87,14 @@ export default function setUpOIDC(app, port) {
     }),
   );
   app.get('/sso-callback', function(req, res, next) {
-    if (req.isAuthenticated()) {
+    if (
+      req.isAuthenticated() ||
+      req.session.ssoToken === req.query['sso-token']
+    ) {
       next();
     } else {
-      res.cookie('token', req.query['sso-token'], {
-        secure: process.env.NODE_ENV === 'production',
-        httpOnly: process.env.NODE_ENV === 'production',
-        maxAge: req.query['sso-validity'] * 1000 * 60,
-      });
-      res.status(200).send();
+      req.session.ssoToken = req.query['sso-token'];
+      res.send();
     }
   });
   app.get('/logout', function(req, res) {
