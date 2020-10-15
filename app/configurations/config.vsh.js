@@ -359,5 +359,21 @@ export default {
     
   },
 
+  geoJson: {
+    layers: [
+      {
+        name: {
+          // Displayed in UI. Should include supported languages
+          de: 'Ladesäulen',
+          en: 'Charging Stations',
+        },
+        url: `${API_URL}/swu-ladesaeulen/v1/`,
+        metadata: {
+          popupContent: 'popupContent',
+        },
+      }
+    ]
+  }
+
   // TODO: staticIEMessage
 };
