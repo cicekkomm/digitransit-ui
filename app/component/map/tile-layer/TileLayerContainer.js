@@ -16,6 +16,7 @@ import CityBikeRoute from '../../../route/CityBikeRoute';
 import StopMarkerPopup from '../popups/StopMarkerPopup';
 import MarkerSelectPopup from './MarkerSelectPopup';
 import CityBikePopup from '../popups/CityBikePopup';
+import DynamicParkingLotsPopup from '../popups/DynamicParkingLotsPopup';
 import ParkAndRideHubPopup from '../popups/ParkAndRideHubPopup';
 import ParkAndRideFacilityPopup from '../popups/ParkAndRideFacilityPopup';
 import ParkAndRideHubRoute from '../../../route/ParkAndRideHubRoute';
@@ -283,6 +284,24 @@ class TileLayerContainer extends GridLayer {
     />
   );
 
+  getDynamicParkingLotsContent = target => (
+    <Relay.RootContainer
+      Component={DynamicParkingLotsPopup}
+      forceFetch
+      route={{
+        name: '',
+        queries: {},
+        params: {
+          feature: target.feature,
+          lat: this.state.coords.lat,
+          lon: this.state.coords.lng,
+        },
+      }}
+      renderLoading={this.loadingPopup}
+      renderFetched={data => <DynamicParkingLotsPopup {...data} />}
+    />
+  );
+
   showOneTargetPopup = () => {
     const target = this.state.selectableTargets[0];
     let id;
@@ -305,6 +324,8 @@ class TileLayerContainer extends GridLayer {
     } else if (target.layer === 'ticketSales') {
       id = target.feature.properties.NID_fi;
       contents = <TicketSalesPopup {...target.feature.properties} />;
+    } else if (target.layer === 'dynamicParkingLots') {
+      contents = this.getDynamicParkingLotsContent(target);
     }
     return (
       <Popup {...this.PopupOptions} key={id} position={this.state.coords}>

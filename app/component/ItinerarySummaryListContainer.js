@@ -215,6 +215,9 @@ const containerComponent = Relay.createContainer(
         startTime
         endTime
         legs {
+          alerts {
+            alertId
+          }
           realTime
           realtimeState
           transitLeg

@@ -27,6 +27,7 @@ export default {
     PELIAS: `${GEOCODING_BASE_URL}/search`,
     PELIAS_REVERSE_GEOCODER: `${GEOCODING_BASE_URL}/reverse`,
     CITYBIKE_MAP: `${API_URL}/map/v1/citybike-map/`,
+    DYNAMICPARKINGLOTS_MAP: `${API_URL}/map/v1/parking-map/`,
   },
 
   contactName: {
@@ -90,7 +91,7 @@ export default {
     primary: '#007ac9',
   },
 
-  sprites: 'assets/svg-sprite.hsl.svg',
+  sprites: 'assets/svg-sprite.hb.svg',
 
   appBarLink: { name: 'VSH', href: 'https://verschwoerhaus.de' },
 
@@ -112,6 +113,12 @@ export default {
       card: 'summary',
       site: '@verschwoerhaus',
     },
+  },
+
+  dynamicParkingLots: {
+    showDynamicParkingLots: true,
+    dynamicParkingLotsSmallIconZoom: 14,
+    dynamicParkingLotsMinZoom: 14
   },
 
   meta: {
