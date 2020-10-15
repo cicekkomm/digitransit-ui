@@ -348,7 +348,7 @@ export default {
           de: 'Ladesäulen',
           en: 'Charging Stations',
         },
-        url: 'https://api.digitransit.im.verschwoerhaus.de/swu-ladesaeulen/v1/',
+        url: `${API_URL}/swu-ladesaeulen/v1/`,
         metadata: {
           popupContent: 'popupContent',
         },
