@@ -340,5 +340,21 @@ export default {
     
   },
 
+  geoJson: {
+    layers: [
+      {
+        name: {
+          // Displayed in UI. Should include supported languages
+          de: 'Ladesäulen',
+          en: 'Charging Stations',
+        },
+        url: 'https://api.digitransit.im.verschwoerhaus.de/swu-ladesaeulen/v1/',
+        metadata: {
+          popupContent: 'popupContent',
+        },
+      }
+    ]
+  }
+
   // TODO: staticIEMessage
 };
