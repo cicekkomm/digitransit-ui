@@ -130,6 +130,11 @@ export default {
       availableForSelection: false,
       defaultValue: false,
     },
+
+    citybike: {
+      availableForSelection: true,
+      defaultValue: true,
+    },
   },
 
   streetModes: {
@@ -185,7 +190,7 @@ export default {
       {
         name: 'footer-faq',
         nameEn: 'FAQ',
-        href: 'https://www.hsl.fi/ohjeita-ja-tietoja/reittiopas',
+        href: 'https://ulm.dev/projects/digitransit/',
       },
       {
         name: 'about-this-service',
@@ -215,13 +220,19 @@ export default {
       {
         header: 'Über diesen Service',
         paragraphs: [
-          'Welcome to the Journey Planner! The Journey Planner shows you how to get to your destination fast and easy by public transport in Ulm. You can also use the planner to find fast walking and cycling routes, and to an extent, for driving directions. The Journey Planner is provided by Verschwörhaus and it is based on the Digitransit service platform.',
+          'Willkommen auf der Ulmer digitransit Instanz. Digitransit ist eine Software, welche verschiedenste Mobilitätsoptionen miteinander verknüpfen kann, ohne dass zwischen vielen verschiedenen Apps gewechselt und verglichen werden muss. Die komplette Software hinter dieser Plattform ist OpenSource und inklusive Konfiguration auf <a href="https://github.com/verschwoerhaus/digitransit-ui/tree/ulm">GitHub</a> zu finden.<br>Die Entwicklung für Ulm wurde im Rahmen des SHAREPLACE Projektes gefördert.<br><br><img src="https://ulm.dev/assets/images/logos/SHAREPLACE-RGB.png"/>',
         ],
       },
       {
         header: 'Datenquellen',
         paragraphs: [
-          'Maps, streets, buildings, stop locations etc. are provided by © OpenStreetMap contributors. Public transport routes and timetables are based on the GTFS from SWU',
+          'Die Berechung der Routen und Darstellungen sind nur möglich, weil die genutzten Daten als OpenData bereit gestellt werden. Folgende Datenquellen werden benutzt:<ul><li>Kartendaten für Hintergrundkarte sowie Routenberechung für Fußgänger, Fahrrad und Auto: &copy; <a href="https://openstreetmap.org/">OpenStreetMap contributors</a></li><li>Fahrplandaten: <a href="https://www.nvbw.de/open-data/fahrplandaten">nvbw</a> und <a href="https://www.swu.de/privatkunden/service/mobilitaet/gtfs-daten/">SWU</a></li><li>Parkplatzbelegungsdaten: <a href="https://github.com/offenesdresden/ParkAPI">ParkenDD-Projekt</a> <a href="https://api.parkendd.de/Ulm">ParkAPI</a></li><li>Leihräder: <a href="https://openbike.ulm.dev/">OpenBike</a> <a href="https://api.openbike.ulm.dev/gbfs/">(GBFS)</a></li><li>E-Scooter: <a href="https://zeusscooters.com/">Zeus</a> <a href="https://gbfs.radforschung.org/zeus/">(GBFS)</a>, <a href="https://www.bird.co/">Bird</a> <a href="https://mds.bird.co/gbfs/ulm/">(GBFS)</a></li></ul>',
+        ],
+      },
+      {
+        header: 'Digitransit auch in deine Stadt',
+        paragraphs: [
+          'Da Digitransit OpenSource ist, kann es für jede Stadt oder Region eingerichtet werden! Um es möglichst einfach zu machen Digitransit zu installieren und an die örtlichen Gegebenheiten anzupassen, haben wir eine ausführliche Anleitung geschrieben: <a href="https://transportkollektiv.github.io/digitransit-setup/">Das Digitranist Cookbook</a>.',
         ],
       },
     ],
@@ -229,13 +240,19 @@ export default {
       {
         header: 'About this service',
         paragraphs: [
-          'Welcome to the Journey Planner! The Journey Planner shows you how to get to your destination fast and easy by public transport in Ulm. You can also use the planner to find fast walking and cycling routes, and to an extent, for driving directions. The Journey Planner is provided by Verschwörhaus and it is based on the Digitransit service platform.',
+          'Welcome to the Digitransit Journey Planner! The Journey Planner shows you how to get to your destination fast and easy by public transport and more monility options in Ulm. Digitransit combines all possible transport options in one platform. So you don\'t have to switch between dozens of apps. The software and configuration behind this platform is completely open source. You can find this on <a href="https://github.com/verschwoerhaus/digitransit-ui/tree/ulm">github</a>.<br>Development for Ulm was supported by the SHAREPLACE Project.<br><br><img src="https://ulm.dev/assets/images/logos/SHAREPLACE-RGB.png"/>',
         ],
       },
       {
         header: 'Data sources',
         paragraphs: [
-          'Maps, streets, buildings, stop locations etc. are provided by © OpenStreetMap contributors. Public transport routes and timetables are based on the GTFS from SWU.',
+          'Route calculations and presention of transit data is only possible because all the used data is published as OpenData under a free license. We use these datasources:<ul><li>Geodata for background maps and calculation for foot, bike and car routing: &copy; <a href="https://openstreetmap.org/">OpenStreetMap contributors</a></li><li>Public transport data: <a href="https://www.nvbw.de/open-data/fahrplandaten">nvbw</a> and <a href="https://www.swu.de/privatkunden/service/mobilitaet/gtfs-daten/">SWU</a></li><li>Live occupation of parking garages: <a href="https://github.com/offenesdresden/ParkAPI">ParkenDD-Project</a> <a href="https://api.parkendd.de/Ulm">ParkAPI</a></li><li>Bikesharing: <a href="https://openbike.ulm.dev/">OpenBike</a> <a href="https://api.openbike.ulm.dev/gbfs/">(GBFS)</a></li><li>E-Scooters: <a href="https://zeusscooters.com/">Zeus</a> <a href="https://gbfs.radforschung.org/zeus/">(GBFS)</a>, <a href="https://www.bird.co/">Bird</a> <a href="https://mds.bird.co/gbfs/ulm/">(GBFS)</a></li></ul>',
+        ],
+      },
+      {
+        header: 'Digitransit in your city',
+        paragraphs: [
+          'Since Digitransit is OpenSource, it can be set up for any city or region! To make it as easy as possible to install Digitransit and adapt it to the local conditions, we have written a detailed manual: <a href="https://transportkollektiv.github.io/digitransit-setup/">The Digitranist Cookbook</a>.',
         ],
       },
     ],
@@ -300,7 +317,61 @@ export default {
   },
 
   cityBike: {
-    showCityBikes: false,
+    showCityBikes: true,
+    networks: {
+      openbike: {
+        icon: 'citybike',
+        name: {
+          de: 'OpenBike',
+          en: 'OpenBike',
+        },
+        type: 'citybike',
+        url: {
+          de: 'https://openbike.ulm.dev',
+          en: 'https://openbike.ulm.dev'
+        }
+      },
+      zeus: {
+        icon: 'scooter',
+        name: {
+          de: 'Zeus',
+          en: 'Zeus',
+        },
+        type: 'scooter',
+        url: {
+          de: 'https://de.zeusscooters.com',
+          en: 'https://zeusscooters.com',
+        },
+      },
+      bird: {
+        icon: 'scooter',
+        name: {
+          de: 'Bird',
+          en: 'Bird',
+        },
+        type: 'scooter',
+        url: {
+          de: 'https://www.bird.co/de/',
+          en: 'https://www.bird.co',
+        },
+      },
+    }, 
+  },
+
+  geoJson: {
+    layers: [
+      {
+        name: {
+          // Displayed in UI. Should include supported languages
+          de: 'Ladesäulen',
+          en: 'Charging Stations',
+        },
+        url: `${API_URL}/swu-ladesaeulen/v1/`,
+        metadata: {
+          popupContent: 'popupContent',
+        },
+      },
+    ],
   },
 
   // TODO: staticIEMessage
