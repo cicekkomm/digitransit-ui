@@ -22,6 +22,7 @@ export default {
     },
     STOP_MAP: `${API_URL}/map/v1/stop-map/`,
     CITYBIKE_MAP: `${API_URL}/map/v1/citybike-map/`,
+    DYNAMICPARKINGLOTS_MAP: `${API_URL}/map/v1/parking-map/`,
   },
 
   contactName: {
@@ -107,6 +108,12 @@ export default {
       card: 'summary',
       site: '@ulm_donau',
     },
+  },
+
+  dynamicParkingLots: {
+    showDynamicParkingLots: true,
+    dynamicParkingLotsSmallIconZoom: 14,
+    dynamicParkingLotsMinZoom: 14
   },
 
   meta: {
