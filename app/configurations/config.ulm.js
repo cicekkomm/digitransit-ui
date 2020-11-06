@@ -86,7 +86,7 @@ export default {
     primary: '#007ac9',
   },
 
-  sprites: 'assets/svg-sprite.hsl.svg',
+  sprites: 'assets/svg-sprite.hb.svg',
 
   appBarLink: { name: 'ulm.dev', href: 'https://ulm.dev' },
 
