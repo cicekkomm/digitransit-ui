@@ -7,10 +7,10 @@ const YEAR = 1900 + new Date().getYear();
 
 const GEOCODING_BASE_URL = process.env.GEOCODING_BASE_URL || `${API_URL}/geocoding/v1`;
 
-const minLat = 48.284106742914524;
-const maxLat = 48.55297816440071;
-const minLon = 9.743499755859375;
-const maxLon = 10.2447509765625;
+const minLat = 47.5338000528;
+const maxLat = 49.7913749328;
+const minLon = 7.5113934084;
+const maxLon = 10.4918239143;
 
 export default {
   CONFIG,
